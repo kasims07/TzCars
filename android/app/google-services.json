@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "580324023086",
+    "project_id": "tanzaniacars-36c24",
+    "storage_bucket": "tanzaniacars-36c24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580324023086:android:854d7d9e7361db0f5878bf",
+        "android_client_info": {
+          "package_name": "com.app.tanzaniacars"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580324023086-lp08qhl8cgntea6hs6bjvmo4h7ma6vn2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXlvm154o7Sf9BINptt-oQQBvlxorP9jU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580324023086-lp08qhl8cgntea6hs6bjvmo4h7ma6vn2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
