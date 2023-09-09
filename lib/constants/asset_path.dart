@@ -11,7 +11,27 @@ class ImageAssetPath {
 
   //ICONS
   static const String icProfile = 'assets/icons/ic_profile.png';
-  static const String icEmail = 'assets/icons/ic_email.svg';
-  static const String icLock = 'assets/icons/ic_lock.svg';
-  static const String icCalender = 'assets/icons/ic_calender.svg';
+  static const String icLocation = 'assets/icons/ic_location.svg';
+  static const String icLike = 'assets/icons/ic_like.svg';
+  static const String icLikeFill = 'assets/icons/ic_like_fill.svg';
+  static const String icSearch = 'assets/icons/ic_search.svg';
+  static const String icFilter = 'assets/icons/ic_filter.svg';
+  static const String icNotification = 'assets/icons/ic_notification.svg';
+  static const String icHomeSelected = 'assets/icons/ic_home_selected.svg';
+  static const String icHomeUnSelected = 'assets/icons/ic_home_unselected.svg';
+  static const String icShopingSelected =
+      'assets/icons/ic_shoping_selected.svg';
+  static const String icShopingUnSelected =
+      'assets/icons/ic_shoping_unselected.svg';
+  static const String icMessageUnSelected =
+      'assets/icons/ic_message_unselected.svg';
+  static const String icMessageSelected =
+      'assets/icons/ic_message_selected.svg';
+  static const String icWalletSelected = 'assets/icons/ic_wellate_selected.svg';
+  static const String icWalletUnSelected =
+      'assets/icons/ic_wellate_unselected.svg';
+  static const String icPersionUnSelected =
+      'assets/icons/ic_persion_unselected.svg';
+  static const String icPersionSelected =
+      'assets/icons/ic_persion_selected.svg';
 }

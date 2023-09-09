@@ -9,6 +9,7 @@ import 'package:user_app/constants/asset_path.dart';
 import 'package:user_app/widgets/genderPicker.dart';
 import 'package:user_app/widgets/loading_widget.dart';
 
+import '../../utils/app_routers.gr.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/button.dart';
 import '../../widgets/date_pick.dart';
@@ -150,13 +151,10 @@ class _CreateAccountState extends State<CreateAccount> {
                     ),
                     Button(
                       onTap: () {
-                        setState(() {
+                        /*  setState(() {
                           isLoding = true;
-                        });
-                        /* Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const OTPVerifScreens()));*/
+                        });*/
+                        AutoRouter.of(context).push(const DashBoard());
                       },
                       text: 'Continue',
                     ),

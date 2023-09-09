@@ -7,7 +7,9 @@ class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
         /// routes go here
-        AutoRoute(page: SplashRoute.page, initial: true),
+        AutoRoute(
+          page: SplashRoute.page,
+        ),
         CustomRoute(
             page: WelcomeRoute.page,
             transitionsBuilder: TransitionsBuilders.slideLeft,
@@ -44,6 +46,54 @@ class AppRouter extends $AppRouter {
             page: ChangePassRoute.page,
             transitionsBuilder: TransitionsBuilders.slideLeft,
             durationInMilliseconds: 400),
+        CustomRoute(
+            page: DashBoard.page,
+            initial: true,
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            durationInMilliseconds: 400,
+            children: [
+              CustomRoute(
+                  page: HomeRoute.page,
+                  initial: true,
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                  durationInMilliseconds: 400,
+                  children: [
+                    CustomRoute(
+                        page: HomePageRoute.page,
+                        initial: true,
+                        transitionsBuilder: TransitionsBuilders.fadeIn,
+                        durationInMilliseconds: 400),
+                    CustomRoute(
+                        page: NotificationRoute.page,
+                        transitionsBuilder: TransitionsBuilders.slideLeft,
+                        durationInMilliseconds: 400),
+                    CustomRoute(
+                        page: SearchRoute.page,
+                        transitionsBuilder: TransitionsBuilders.slideBottom,
+                        durationInMilliseconds: 400),
+                  ]),
+              CustomRoute(
+                  page: OrdersRoute.page,
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                  durationInMilliseconds: 400),
+              CustomRoute(
+                  page: MessageRoute.page,
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                  durationInMilliseconds: 400),
+              CustomRoute(
+                  page: WallateRoute.page,
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                  durationInMilliseconds: 400),
+              CustomRoute(
+                  page: ProfileRoute.page,
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                  durationInMilliseconds: 400),
+              CustomRoute(
+                page: NotificationRoute.page,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                durationInMilliseconds: 400,
+              )
+            ]),
       ];
 }
 

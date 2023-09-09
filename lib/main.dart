@@ -7,12 +7,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sizer/sizer.dart';
-import 'package:user_app/screens/splash_screen/splash_screen.dart';
 import 'package:user_app/utils/app_dependencies.dart';
 import 'package:user_app/utils/app_routers.dart';
 import 'package:user_app/utils/app_styles.dart';
 import 'package:user_app/utils/stream_builder.dart';
-
 import 'firebase_options.dart';
 import 'languages/l10n.dart';
 
@@ -55,7 +53,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   final AppRouter _appRouter = AppRouter();
 
   @override
@@ -73,10 +70,13 @@ class _MyAppState extends State<MyApp> {
               title: 'Tanzaniya Cars',
               theme: ThemeData(
                 primarySwatch: Colors.grey,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
               ),
               locale: snapshot.data,
               supportedLocales: L10n.all,
-              localizationsDelegates: [
+              localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate
