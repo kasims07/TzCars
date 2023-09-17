@@ -40,7 +40,7 @@ class _OnBoardScreensState extends State<OnBoardScreens> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-                height: 20.h,
+                height: 16.h,
                 width: 100.w,
                 child: Lottie.asset('assets/animations/car_loading.json',
                     fit: BoxFit.cover)),

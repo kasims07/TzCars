@@ -19,6 +19,18 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   TextEditingController search = TextEditingController();
+  final GlobalKey<_MyDialogState> dialogKey = GlobalKey<_MyDialogState>();
+  List<bool> isSelected = [true, false, false, false, false, false];
+  List<bool> conditions = [
+    true,
+    false,
+    false,
+  ];
+  List<bool> brands = [
+    true,
+    false,
+    false,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
         },
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             TextField(
@@ -65,7 +77,28 @@ class _SearchScreenState extends State<SearchScreen> {
                   suffixIcon: InkWell(
                     onTap: () {
                       // ShowFilters(context);
-                      _showActionSheet(context);
+                      // _showActionSheet(context);
+                      showGeneralDialog(
+                        context: context,
+                        barrierLabel: "Label1",
+                        barrierDismissible: true,
+                        barrierColor: Colors.black.withOpacity(0.5),
+                        transitionDuration: Duration(milliseconds: 500),
+                        pageBuilder: (context, anim1, anim2) => MyDialog(
+                          key: dialogKey,
+                          rating: isSelected,
+                          condition: conditions,
+                          brands: brands,
+                        ),
+                        transitionBuilder: (context, anim1, anim2, child) {
+                          return SlideTransition(
+                            position:
+                                Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                                    .animate(anim1),
+                            child: child,
+                          );
+                        },
+                      ).then((value) => {print('Dialogue dismissed')});
                     },
                     child: Transform.scale(
                       scale: 0.4,
@@ -94,7 +127,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  void ShowFilters(BuildContext context) {
+  /*void ShowFilters(BuildContext context) {
     showGeneralDialog(
       barrierLabel: "Label1",
       barrierDismissible: true,
@@ -112,9 +145,78 @@ class _SearchScreenState extends State<SearchScreen> {
                     topLeft: Radius.circular(2.5.h),
                     topRight: Radius.circular(2.5.h)),
                 child: Scaffold(
-                  body: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [],
+                  body: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Filter',
+                              style: GoogleFonts.urbanist(
+                                  fontSize: 15.sp,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                        const Divider(),
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Rating',
+                                  style: GoogleFonts.urbanist(
+                                      fontSize: 15.sp,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            ToggleButtons(
+                              children: <Widget>[
+                                for (int i = 0; i < 5; i++)
+                                  Chip(
+                                    backgroundColor: isSelected[i]
+                                        ? Colors.black
+                                        : Colors.white,
+                                    label: Text((i + 1).toString()),
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color: Colors.black,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                  ),
+                              ],
+                              isSelected: isSelected,
+                              onPressed: (int index) {
+                                setState(() {
+                                  for (int buttonIndex = 0;
+                                      buttonIndex < isSelected.length;
+                                      buttonIndex++) {
+                                    isSelected[buttonIndex] =
+                                        buttonIndex == index;
+                                  }
+                                });
+                              },
+                              fillColor: Colors.transparent,
+                              selectedColor: Colors.transparent,
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -130,7 +232,7 @@ class _SearchScreenState extends State<SearchScreen> {
         );
       },
     ).then((value) => {print('Dialogue dismissed')});
-  }
+  }*/
 
   void _showActionSheet(BuildContext context) {
     showCupertinoModalPopup<void>(
@@ -165,6 +267,223 @@ class _SearchScreenState extends State<SearchScreen> {
             child: const Text('Destructive Action'),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MyDialog extends StatefulWidget {
+  List<bool> rating;
+  List<bool> condition;
+  List<bool> brands;
+
+  MyDialog(
+      {Key? key,
+      required this.rating,
+      required this.condition,
+      required this.brands})
+      : super(key: key);
+
+  @override
+  _MyDialogState createState() => _MyDialogState();
+}
+
+class _MyDialogState extends State<MyDialog> {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        height: 70.h,
+        child: SizedBox.expand(
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(2.5.h),
+                topRight: Radius.circular(2.5.h)),
+            child: Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Filter',
+                          style: GoogleFonts.urbanist(
+                              fontSize: 15.sp,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    const Divider(),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Rating',
+                              style: GoogleFonts.urbanist(
+                                  fontSize: 15.sp,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          physics: BouncingScrollPhysics(),
+                          child: ToggleButtons(
+                            borderColor: Colors.transparent,
+                            color: Colors.transparent,
+                            selectedColor: Colors.transparent,
+                            disabledColor: Colors.transparent,
+                            fillColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            selectedBorderColor: Colors.transparent,
+                            children: <Widget>[
+                              for (int i = 0; i < widget.rating.length; i++)
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 02),
+                                  child: Chip(
+                                    avatar: Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 15,
+                                    ),
+                                    backgroundColor: widget.rating[i]
+                                        ? Colors.black
+                                        : Colors.white,
+                                    label: Text(
+                                      i == 0 ? 'All' : (i).toString(),
+                                      style: TextStyle(
+                                        color: widget.rating[i]
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color: Colors.black,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                            isSelected: widget.rating,
+                            onPressed: (int index) {
+                              setState(() {
+                                for (int buttonIndex = 0;
+                                    buttonIndex < widget.rating.length;
+                                    buttonIndex++) {
+                                  widget.rating[buttonIndex] =
+                                      buttonIndex == index;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Condition',
+                              style: GoogleFonts.urbanist(
+                                  fontSize: 15.sp,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ToggleButtons(
+                              borderColor: Colors.transparent,
+                              color: Colors.transparent,
+                              selectedColor: Colors.transparent,
+                              disabledColor: Colors.transparent,
+                              fillColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              selectedBorderColor: Colors.transparent,
+                              children: <Widget>[
+                                for (int i = 0;
+                                    i < widget.condition.length;
+                                    i++)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 02),
+                                    child: Chip(
+                                      backgroundColor: widget.condition[i]
+                                          ? Colors.black
+                                          : Colors.white,
+                                      label: Text(
+                                        i == 0
+                                            ? 'All'
+                                            : i == 1
+                                                ? 'New'
+                                                : 'Used',
+                                        style: TextStyle(
+                                          color: widget.condition[i]
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                          color: Colors.black,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                              isSelected: widget.condition,
+                              onPressed: (int index) {
+                                setState(() {
+                                  for (int buttonIndex = 0;
+                                      buttonIndex < widget.condition.length;
+                                      buttonIndex++) {
+                                    widget.condition[buttonIndex] =
+                                        buttonIndex == index;
+                                  }
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

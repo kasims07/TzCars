@@ -25,7 +25,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10).copyWith(top: 10),
           child: Column(
             children: [
               Row(

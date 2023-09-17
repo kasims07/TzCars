@@ -7,9 +7,7 @@ class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
         /// routes go here
-        AutoRoute(
-          page: SplashRoute.page,
-        ),
+        AutoRoute(page: SplashRoute.page, initial: true),
         CustomRoute(
             page: WelcomeRoute.page,
             transitionsBuilder: TransitionsBuilders.slideLeft,
@@ -48,7 +46,7 @@ class AppRouter extends $AppRouter {
             durationInMilliseconds: 400),
         CustomRoute(
             page: DashBoard.page,
-            initial: true,
+            //initial: true,
             transitionsBuilder: TransitionsBuilders.fadeIn,
             durationInMilliseconds: 400,
             children: [
