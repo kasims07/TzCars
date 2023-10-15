@@ -47,16 +47,14 @@ class _SignInScreensState extends State<SignInScreens> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
+              Image.asset(
+                'assets/images/car_logo.png',
+                fit: BoxFit.contain,
                 height: 20.h,
-                child: SvgPicture.asset(
-                  'assets/images/car_logo.svg',
-                  fit: BoxFit.cover,
-                ),
               ),
               Text(
                 "Login to your Account",
@@ -81,7 +79,7 @@ class _SignInScreensState extends State<SignInScreens> {
                 sufixIcon: Icons.lock,
               ),
               SizedBox(
-                height: 5.h,
+                height: 3.h,
               ),
               Button(
                 onTap: () {},
@@ -201,9 +199,6 @@ class _SignInScreensState extends State<SignInScreens> {
                 ),
               ),
               SizedBox(height: 3.h),
-              SizedBox(
-                height: 2.h,
-              ),
               InkWell(
                 onTap: () {
                   AutoRouter.of(context).replace(const SignUpRoutes());
@@ -232,7 +227,10 @@ class _SignInScreensState extends State<SignInScreens> {
                     ),
                   ],
                 ),
-              )
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
             ],
           ),
         ),

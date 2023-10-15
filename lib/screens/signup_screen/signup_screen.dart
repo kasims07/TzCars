@@ -50,12 +50,10 @@ class _SignUpScreensState extends State<SignUpScreens> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
+              Image.asset(
+                'assets/images/car_logo.png',
+                fit: BoxFit.contain,
                 height: 20.h,
-                child: SvgPicture.asset(
-                  'assets/images/car_logo.svg',
-                  fit: BoxFit.cover,
-                ),
               ),
               Text(
                 "Create Your Account",
@@ -179,7 +177,6 @@ class _SignUpScreensState extends State<SignUpScreens> {
                   ),
                 ),
               ),
-              SizedBox(height: 3.h),
               SizedBox(
                 height: 2.h,
               ),
@@ -211,7 +208,10 @@ class _SignUpScreensState extends State<SignUpScreens> {
                     ),
                   ],
                 ),
-              )
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
             ],
           ),
         ),
