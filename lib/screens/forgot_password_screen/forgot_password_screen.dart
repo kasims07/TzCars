@@ -40,46 +40,48 @@ class _ForgotPasScreensState extends State<ForgotPasScreens> {
           AutoRouter.of(context).pop();
         },
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Hero(
-              tag: 'H1',
-              child: SizedBox(
-                height: 20.h,
-                child: Image.asset(
-                  ImageAssetPath.lock,
-                  fit: BoxFit.cover,
-                ),
-              )
-                  .animate()
-                  .fadeIn(duration: 500.milliseconds, curve: Curves.easeIn),
-            ),
-            Text(
-              "Enter your phone reset your password",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.urbanist(
-                  fontSize: 25.sp,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            PhTxFild(
-              controller: emailController,
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            Button(
-              onTap: () {
-                AutoRouter.of(context).push(const OTPVerifRoutes());
-              },
-              text: 'Send OTP',
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Hero(
+                tag: 'H1',
+                child: SizedBox(
+                  height: 20.h,
+                  child: Image.asset(
+                    ImageAssetPath.lock,
+                    fit: BoxFit.cover,
+                  ),
+                )
+                    .animate()
+                    .fadeIn(duration: 500.milliseconds, curve: Curves.easeIn),
+              ),
+              Text(
+                "Enter your phone reset your password",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.urbanist(
+                    fontSize: 25.sp,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 3.h,
+              ),
+              PhTxFild(
+                controller: emailController,
+              ),
+              SizedBox(
+                height: 3.h,
+              ),
+              Button(
+                onTap: () {
+                  AutoRouter.of(context).push(const OTPVerifRoutes());
+                },
+                text: 'Send OTP',
+              ),
+            ],
+          ),
         ),
       ),
     );

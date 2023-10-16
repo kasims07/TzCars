@@ -67,7 +67,8 @@ class AppRouter extends $AppRouter {
                         durationInMilliseconds: 400),
                     CustomRoute(
                         page: SearchRoute.page,
-                        transitionsBuilder: TransitionsBuilders.slideBottom,
+                        transitionsBuilder:
+                            TransitionsBuilders.slideLeftWithFade,
                         durationInMilliseconds: 400),
                   ]),
               CustomRoute(
@@ -85,7 +86,19 @@ class AppRouter extends $AppRouter {
               CustomRoute(
                   page: ProfileRoute.page,
                   transitionsBuilder: TransitionsBuilders.fadeIn,
-                  durationInMilliseconds: 400),
+                  durationInMilliseconds: 400,
+                  children: [
+                    CustomRoute(
+                      page: ProfilePageRoute.page,
+                      initial: true,
+                      transitionsBuilder: TransitionsBuilders.fadeIn,
+                      durationInMilliseconds: 400,
+                    ),
+                    CustomRoute(
+                        page: CreateAccount.page,
+                        transitionsBuilder: TransitionsBuilders.slideLeft,
+                        durationInMilliseconds: 400),
+                  ]),
               CustomRoute(
                 page: NotificationRoute.page,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
