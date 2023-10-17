@@ -34,6 +34,7 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                 children: [
                   SizedBox(height: 3.h,),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Profile",
@@ -43,6 +44,7 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
                       ),
+                      SvgPicture.asset(ImageAssetPath.icMore),
                     ],
                   ),
                   SizedBox(height: 2.h,),
@@ -131,6 +133,26 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                   Divider(),
                   SizedBox(
                     height: 1.h,
+                  ),
+                  //Saved
+                  Row(
+                    children: [
+                      SvgPicture.asset(ImageAssetPath.icSave),
+                      SizedBox(width: 4.w,),
+                      Text(
+                        "Save Cars",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.urbanist(
+                            fontSize: 14.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Spacer(),
+                      Icon(Icons.keyboard_arrow_right_rounded)
+                    ],
+                  ),
+                  SizedBox(
+                    height: 3.h,
                   ),
                   //Notification
                   Row(

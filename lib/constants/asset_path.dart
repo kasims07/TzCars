@@ -16,6 +16,9 @@ class ImageAssetPath {
   static const String icLikeFill = 'assets/icons/ic_like_fill.svg';
   static const String icSearch = 'assets/icons/ic_search.svg';
   static const String icFilter = 'assets/icons/ic_filter.svg';
+  static const String icMore = 'assets/icons/ic_more.svg';
+  static const String icSave = 'assets/icons/ic_save.svg';
+  static const String icDelete = 'assets/icons/ic_delete.svg';
   static const String icNotification = 'assets/icons/ic_notification.svg';
   static const String icLock = 'assets/icons/ic_lock.svg';
   static const String icLogout = 'assets/icons/ic_logout.svg';
