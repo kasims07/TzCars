@@ -31,6 +31,27 @@ class _SearchScreenState extends State<SearchScreen> {
     false,
     false,
   ];
+  List<bool> sortBy = [
+    true, false, false, false,
+  ];
+
+  List<bool> carsCompany = [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +110,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           rating: isSelected,
                           condition: conditions,
                           brands: brands,
+                          shortBy: sortBy,
+                          carcompany: carsCompany,
                         ),
                         transitionBuilder: (context, anim1, anim2, child) {
                           return SlideTransition(
@@ -276,12 +299,14 @@ class MyDialog extends StatefulWidget {
   List<bool> rating;
   List<bool> condition;
   List<bool> brands;
+  List<bool> shortBy;
+  List<bool> carcompany;
 
   MyDialog(
       {Key? key,
       required this.rating,
       required this.condition,
-      required this.brands})
+      required this.brands, required this.shortBy, required this.carcompany})
       : super(key: key);
 
   @override
@@ -477,6 +502,174 @@ class _MyDialogState extends State<MyDialog> {
                           ],
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Sort by',
+                              style: GoogleFonts.urbanist(
+                                  fontSize: 15.sp,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          physics: BouncingScrollPhysics(),
+                          child: ToggleButtons(
+                            borderColor: Colors.transparent,
+                            color: Colors.transparent,
+                            selectedColor: Colors.transparent,
+                            disabledColor: Colors.transparent,
+                            fillColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            selectedBorderColor: Colors.transparent,
+                            children: <Widget>[
+                              for (int i = 0;
+                              i < widget.shortBy.length;
+                              i++)
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 02),
+                                  child: Chip(
+                                    backgroundColor: widget.shortBy[i]
+                                        ? Colors.black
+                                        : Colors.white,
+                                    label: Text(
+                                      i == 0
+                                          ? 'Popular'
+                                          : i == 1
+                                          ? 'Most Recent' : i == 2
+                                          ?'Price Low'
+                                          : 'Price High',
+                                      style: TextStyle(
+                                        color: widget.shortBy[i]
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color: Colors.black,
+                                      ),
+                                      borderRadius:
+                                      BorderRadius.circular(5.0),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                            isSelected: widget.shortBy,
+                            onPressed: (int index) {
+                              setState(() {
+                                for (int buttonIndex = 0;
+                                buttonIndex < widget.shortBy.length;
+                                buttonIndex++) {
+                                  widget.shortBy[buttonIndex] =
+                                      buttonIndex == index;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Car Brand',
+                                style: GoogleFonts.urbanist(
+                                    fontSize: 15.sp,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                            child: GridView.builder(
+                              shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,// Number of columns in the grid
+                                childAspectRatio: (1/0.9)
+                              ),
+                              itemCount: widget.carcompany.length, // Total number of toggle buttons
+                              itemBuilder: (BuildContext context, int index) {
+                                return Center(
+                                  child: ToggleButtons(
+                                    borderColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    selectedColor: Colors.transparent,
+                                    disabledColor: Colors.transparent,
+                                    fillColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    splashColor: Colors.transparent,
+                                    selectedBorderColor: Colors.transparent,
+                                    children: <Widget>[
+                                      Container(
+                                        height: 10.h,
+                                        width: 10.h,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffF5F5F5),
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(
+                                            color: widget.carcompany[index]? Colors.black : Colors.transparent,
+                                          )
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                                flex: 2,
+                                                child: Image.asset('assets/images/mbw_logo.jpg')),
+                                            Expanded(
+                                              flex: 1,
+                                              child: Text(
+                                               'BMW',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+
+                                    ],
+                                    isSelected: [widget.carcompany[index]],
+                                    onPressed: (newState) {
+                                      setState(() {
+                                        widget.carcompany[index] = !widget.carcompany[index];
+                                      });
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
